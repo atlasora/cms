@@ -550,19 +550,31 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
   };
   attributes: {
     City: Schema.Attribute.String;
+    country_long: Schema.Attribute.String;
+    country_short: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    formattedAddress: Schema.Attribute.Text;
+    lat: Schema.Attribute.String;
+    lng: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::location.location'
     > &
       Schema.Attribute.Private;
+    locationImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    numberOfPost: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
+    state_long: Schema.Attribute.String;
+    state_short: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    zipcode: Schema.Attribute.String;
   };
 }
 
