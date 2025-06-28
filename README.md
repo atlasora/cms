@@ -44,12 +44,43 @@ npx strapi deploy
 
 # TOKEN
 
+Local (you will probably create your own)
+
 d15828d4bf9052364598ac45bf483ab02f30b944434e5cba608f5c79bf3a808a1c1565b3291b4b6245867423616cf9582bda3739afc2f246ff99a86bff810b3f9f649e5b777b4d3aaa67e37034e542cbdc73dba5cd34e075c27b2b19fd4d51c775453e7765f826a4f1bc0074ba6c46c8473759e46e4246e19d2c3a15c3165387
+
+production
+
+https://wonderful-diamond-9e301caa9a.strapiapp.com/
 
 # LOCATIONS
 
+local
+
 curl -X GET http://localhost:1337/api/locations/ \
  -H "Authorization: Bearer d15828d4bf9052364598ac45bf483ab02f30b944434e5cba608f5c79bf3a808a1c1565b3291b4b6245867423616cf9582bda3739afc2f246ff99a86bff810b3f9f649e5b777b4d3aaa67e37034e542cbdc73dba5cd34e075c27b2b19fd4d51c775453e7765f826a4f1bc0074ba6c46c8473759e46e4246e19d2c3a15c3165387"
+
+curl -X GET http://localhost:1337/api/locations?filters[City][$eqi]=london \
+ -H "Authorization: Bearer d15828d4bf9052364598ac45bf483ab02f30b944434e5cba608f5c79bf3a808a1c1565b3291b4b6245867423616cf9582bda3739afc2f246ff99a86bff810b3f9f649e5b777b4d3aaa67e37034e542cbdc73dba5cd34e075c27b2b19fd4d51c775453e7765f826a4f1bc0074ba6c46c8473759e46e4246e19d2c3a15c3165387"
+
+If you get no match then your terminal sucks and you have to format the brackets
+
+URL-Encoded Version Explained:
+[ becomes %5B
+
+] becomes %5D
+
+$ becomes %24
+
+curl -X GET 'http://localhost:1337/api/locations?filters%5BCity%5D%5B%24eqi%5D=london' \
+-H 'Authorization: Bearer d15828d4bf9052364598ac45bf483ab02f30b944434e5cba608f5c79bf3a808a1c1565b3291b4b6245867423616cf9582bda3739afc2f246ff99a86bff810b3f9f649e5b777b4d3aaa67e37034e542cbdc73dba5cd34e075c27b2b19fd4d51c775453e7765f826a4f1bc0074ba6c46c8473759e46e4246e19d2c3a15c3165387'
+
+production
+
+curl -X GET https://wonderful-diamond-9e301caa9a.strapiapp.com/api/locations/ \
+ -H "Authorization: Bearer d3ebf900e7b11a63b8c9d4e407c1354a02837b611e2e54b8d603ece3aafc964acb528df06fb95223635e2fc5caa094daeede6aaf5f0ea1ba1d2e22819230b817e2f75dba206d1470b8ddff753fe84fe09aa2479b63e79fad8f27240be411e5c61d62831c344ffa6ab57c593cdfe4bc91fcacf01d35aed074dd9f533700385a17"
+
+curl -X GET 'https://wonderful-diamond-9e301caa9a.strapiapp.com/api/locations?filters%5BCity%5D%5B%24eqi%5D=london' \
+-H 'Authorization: Bearer d3ebf900e7b11a63b8c9d4e407c1354a02837b611e2e54b8d603ece3aafc964acb528df06fb95223635e2fc5caa094daeede6aaf5f0ea1ba1d2e22819230b817e2f75dba206d1470b8ddff753fe84fe09aa2479b63e79fad8f27240be411e5c61d62831c344ffa6ab57c593cdfe4bc91fcacf01d35aed074dd9f533700385a17'
 
 ## 📚 Learn more
 
