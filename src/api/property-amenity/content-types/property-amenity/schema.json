@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "property_amenities",
+  "info": {
+    "singularName": "property-amenity",
+    "pluralName": "property-amenities",
+    "displayName": "PropertyAmenity"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "svgcode": {
+      "type": "text"
+    },
+    "properties": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::property.property",
+      "mappedBy": "property_amenities"
+    }
+  }
+}

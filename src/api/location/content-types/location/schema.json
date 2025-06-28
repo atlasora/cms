@@ -11,6 +11,9 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "country_long": {
+      "type": "string"
+    },
     "City": {
       "type": "string"
     },
@@ -32,9 +35,6 @@
     "state_short": {
       "type": "string"
     },
-    "country_long": {
-      "type": "string"
-    },
     "country_short": {
       "type": "string"
     },
@@ -50,6 +50,12 @@
     },
     "numberOfPost": {
       "type": "integer"
+    },
+    "properties": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::property.property",
+      "mappedBy": "locations"
     }
   }
 }
