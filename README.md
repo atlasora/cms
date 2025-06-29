@@ -82,6 +82,20 @@ curl -X GET https://wonderful-diamond-9e301caa9a.strapiapp.com/api/locations/ \
 curl -X GET 'https://wonderful-diamond-9e301caa9a.strapiapp.com/api/locations?filters%5BCity%5D%5B%24eqi%5D=london' \
 -H 'Authorization: Bearer d3ebf900e7b11a63b8c9d4e407c1354a02837b611e2e54b8d603ece3aafc964acb528df06fb95223635e2fc5caa094daeede6aaf5f0ea1ba1d2e22819230b817e2f75dba206d1470b8ddff753fe84fe09aa2479b63e79fad8f27240be411e5c61d62831c344ffa6ab57c593cdfe4bc91fcacf01d35aed074dd9f533700385a17'
 
+TRANSFER TOKEN
+
+To push the content from local
+
+npx strapi transfer
+
+remote url
+
+https://wonderful-diamond-9e301caa9a.strapiapp.com/admin/
+
+transfer token
+
+7236ad96b1a1182dd1f83187ae011cb57860f696c8f4249ac037d4189b4560de0ba1ebdb518a31dee9b76087e4f893d19f88c98d635c5662f5fb2e04877322aaa628a9f93539f2341794725877b09e59125b9e3ba57bc6f108c67c1edf74904b1f739aa1fb142ec172c7beaf717cb65841f5212cb8b0ddc4c4bd3466e98c4b73
+
 ## 📚 Learn more
 
 - [Resource center](https://strapi.io/resource-center) - Strapi resource center.

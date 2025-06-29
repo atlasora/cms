@@ -171,6 +171,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::property-amenity.property-amenity",
+      "private": true,
       "inversedBy": "properties"
     },
     "locations": {
@@ -202,6 +203,27 @@
           "localized": true
         }
       }
+    },
+    "Featured": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "default": false
+    },
+    "property_review": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::property-review.property-review",
+      "inversedBy": "properties"
+    },
+    "currency": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::currency.currency",
+      "inversedBy": "properties"
     }
   }
 }
