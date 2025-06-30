@@ -213,9 +213,9 @@
       },
       "default": false
     },
-    "property_review": {
+    "property_reviews": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::property-review.property-review",
       "inversedBy": "properties"
     },

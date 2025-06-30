@@ -52,9 +52,9 @@
     },
     "properties": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::property.property",
-      "mappedBy": "property_review"
+      "mappedBy": "property_reviews"
     }
   }
 }

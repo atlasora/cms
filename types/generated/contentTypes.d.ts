@@ -610,7 +610,7 @@ export interface ApiPropertyReviewPropertyReview
     > &
       Schema.Attribute.Private;
     properties: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::property.property'
     >;
     property_user: Schema.Attribute.Relation<
@@ -806,8 +806,8 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
       'api::property-amenity.property-amenity'
     > &
       Schema.Attribute.Private;
-    property_review: Schema.Attribute.Relation<
-      'manyToOne',
+    property_reviews: Schema.Attribute.Relation<
+      'manyToMany',
       'api::property-review.property-review'
     >;
     publishedAt: Schema.Attribute.DateTime;
