@@ -540,7 +540,7 @@ export interface ApiPropertyAmenityPropertyAmenity
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Icon: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -554,7 +554,6 @@ export interface ApiPropertyAmenityPropertyAmenity
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    svgcode: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -804,8 +803,7 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
     property_amenities: Schema.Attribute.Relation<
       'manyToMany',
       'api::property-amenity.property-amenity'
-    > &
-      Schema.Attribute.Private;
+    >;
     property_reviews: Schema.Attribute.Relation<
       'manyToMany',
       'api::property-review.property-review'
@@ -833,6 +831,21 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    Stars: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
     Title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &

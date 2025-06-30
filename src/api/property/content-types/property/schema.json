@@ -171,7 +171,6 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::property-amenity.property-amenity",
-      "private": true,
       "inversedBy": "properties"
     },
     "locations": {
@@ -224,6 +223,18 @@
       "relation": "manyToOne",
       "target": "api::currency.currency",
       "inversedBy": "properties"
+    },
+    "Stars": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "default": 1,
+      "min": 0,
+      "max": 5
     }
   }
 }

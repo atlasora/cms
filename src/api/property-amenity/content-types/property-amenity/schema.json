@@ -15,25 +15,16 @@
       "type": "string",
       "required": true
     },
-    "Image": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "svgcode": {
-      "type": "text"
-    },
     "properties": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::property.property",
       "private": true,
       "mappedBy": "property_amenities"
+    },
+    "Icon": {
+      "type": "string",
+      "required": true
     }
   }
 }

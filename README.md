@@ -56,8 +56,8 @@ https://wonderful-diamond-9e301caa9a.strapiapp.com/
 
 local
 
-curl -X GET http://localhost:1337/api/locations/ \
- -H "Authorization: Bearer d15828d4bf9052364598ac45bf483ab02f30b944434e5cba608f5c79bf3a808a1c1565b3291b4b6245867423616cf9582bda3739afc2f246ff99a86bff810b3f9f649e5b777b4d3aaa67e37034e542cbdc73dba5cd34e075c27b2b19fd4d51c775453e7765f826a4f1bc0074ba6c46c8473759e46e4246e19d2c3a15c3165387"
+curl -X GET http://localhost:1337/api/properties?populate=\* \
+ -H "Authorization: Bearer 7b4923fb6ceed948c08e0795fb31cf74bd0b31cdd880775c5b1c8d8ce3c50acfdc7d1fba399d53426bc44581bf67c4e847e18417d91f3a90e85d8082771949d73f095a207d4a5874afa6031835a078b731277a8e1051ab8ae65dbd7f7dac76fdbaa8949a750cbe597660441587fc7cef89f47fd8d90f4e61804e64040c25a47c"
 
 curl -X GET http://localhost:1337/api/locations?filters[City][$eqi]=london \
  -H "Authorization: Bearer d15828d4bf9052364598ac45bf483ab02f30b944434e5cba608f5c79bf3a808a1c1565b3291b4b6245867423616cf9582bda3739afc2f246ff99a86bff810b3f9f649e5b777b4d3aaa67e37034e542cbdc73dba5cd34e075c27b2b19fd4d51c775453e7765f826a4f1bc0074ba6c46c8473759e46e4246e19d2c3a15c3165387"
@@ -76,7 +76,7 @@ curl -X GET 'http://localhost:1337/api/locations?filters%5BCity%5D%5B%24eqi%5D=l
 
 production
 
-curl -X GET https://wonderful-diamond-9e301caa9a.strapiapp.com/api/locations/?populate=Images \
+curl -X GET https://wonderful-diamond-9e301caa9a.strapiapp.com/api/locations/?populate=Images* \
  -H "Authorization: Bearer d3ebf900e7b11a63b8c9d4e407c1354a02837b611e2e54b8d603ece3aafc964acb528df06fb95223635e2fc5caa094daeede6aaf5f0ea1ba1d2e22819230b817e2f75dba206d1470b8ddff753fe84fe09aa2479b63e79fad8f27240be411e5c61d62831c344ffa6ab57c593cdfe4bc91fcacf01d35aed074dd9f533700385a17"
 
 curl -X GET https://wonderful-diamond-9e301caa9a.strapiapp.com/api/locations/ \
