@@ -19,7 +19,6 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::property.property",
-      "private": true,
       "mappedBy": "property_amenities"
     },
     "Icon": {

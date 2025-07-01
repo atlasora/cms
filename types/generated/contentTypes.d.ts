@@ -551,8 +551,7 @@ export interface ApiPropertyAmenityPropertyAmenity
     properties: Schema.Attribute.Relation<
       'manyToMany',
       'api::property.property'
-    > &
-      Schema.Attribute.Private;
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
