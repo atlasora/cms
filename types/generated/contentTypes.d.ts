@@ -611,10 +611,6 @@ export interface ApiPropertyReviewPropertyReview
       'manyToMany',
       'api::property.property'
     >;
-    property_user: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::property-user.property-user'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     Review: Schema.Attribute.Text;
     ReviewDate: Schema.Attribute.Date;
@@ -631,39 +627,10 @@ export interface ApiPropertyReviewPropertyReview
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiPropertyUserPropertyUser
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'property_users';
-  info: {
-    displayName: 'PropertyUser';
-    pluralName: 'property-users';
-    singularName: 'property-user';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::property-user.property-user'
-    > &
-      Schema.Attribute.Private;
-    Name: Schema.Attribute.String;
-    property_reviews: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::property-review.property-review'
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -1314,7 +1281,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1339,6 +1305,11 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    property_reviews: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::property-review.property-review'
+    >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1374,7 +1345,6 @@ declare module '@strapi/strapi' {
       'api::location.location': ApiLocationLocation;
       'api::property-amenity.property-amenity': ApiPropertyAmenityPropertyAmenity;
       'api::property-review.property-review': ApiPropertyReviewPropertyReview;
-      'api::property-user.property-user': ApiPropertyUserPropertyUser;
       'api::property.property': ApiPropertyProperty;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
