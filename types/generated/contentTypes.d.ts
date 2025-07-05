@@ -634,6 +634,39 @@ export interface ApiPropertyReviewPropertyReview
   };
 }
 
+export interface ApiPropertyTypePropertyType
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'property_types';
+  info: {
+    displayName: 'PropertyType';
+    pluralName: 'property-types';
+    singularName: 'property-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::property-type.property-type'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    properties: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::property.property'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
   collectionName: 'properties';
   info: {
@@ -692,14 +725,12 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     currency: Schema.Attribute.Relation<'manyToOne', 'api::currency.currency'>;
-    CurrentlyRented: Schema.Attribute.Enumeration<['Yes', 'No']> &
-      Schema.Attribute.Required &
+    CurrentlyRented: Schema.Attribute.Boolean &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
-      }> &
-      Schema.Attribute.DefaultTo<'No'>;
+      }>;
     Description: Schema.Attribute.Blocks &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -759,6 +790,13 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    MaxGuests: Schema.Attribute.Integer &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<1>;
     PricePerNight: Schema.Attribute.Decimal &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -773,6 +811,10 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
     property_reviews: Schema.Attribute.Relation<
       'manyToMany',
       'api::property-review.property-review'
+    >;
+    property_type: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::property-type.property-type'
     >;
     publishedAt: Schema.Attribute.DateTime;
     PurchasePrice: Schema.Attribute.Decimal &
@@ -1345,6 +1387,7 @@ declare module '@strapi/strapi' {
       'api::location.location': ApiLocationLocation;
       'api::property-amenity.property-amenity': ApiPropertyAmenityPropertyAmenity;
       'api::property-review.property-review': ApiPropertyReviewPropertyReview;
+      'api::property-type.property-type': ApiPropertyTypePropertyType;
       'api::property.property': ApiPropertyProperty;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

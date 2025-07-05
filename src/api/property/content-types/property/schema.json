@@ -153,20 +153,6 @@
       },
       "required": true
     },
-    "CurrentlyRented": {
-      "type": "enumeration",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true,
-      "default": "No",
-      "enum": [
-        "Yes",
-        "No"
-      ]
-    },
     "property_amenities": {
       "type": "relation",
       "relation": "manyToMany",
@@ -235,6 +221,29 @@
       "default": 1,
       "min": 0,
       "max": 5
+    },
+    "CurrentlyRented": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "property_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::property-type.property-type",
+      "inversedBy": "properties"
+    },
+    "MaxGuests": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "default": 1
     }
   }
 }
