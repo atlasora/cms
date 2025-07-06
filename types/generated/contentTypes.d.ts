@@ -583,6 +583,7 @@ export interface ApiPropertyReviewPropertyReview
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    DislikeCounter: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     Home: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -601,16 +602,14 @@ export interface ApiPropertyReviewPropertyReview
         number
       > &
       Schema.Attribute.DefaultTo<1>;
+    LikeCounter: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::property-review.property-review'
     > &
       Schema.Attribute.Private;
-    properties: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::property.property'
-    >;
+    property: Schema.Attribute.Relation<'manyToOne', 'api::property.property'>;
     publishedAt: Schema.Attribute.DateTime;
     Review: Schema.Attribute.Text;
     ReviewDate: Schema.Attribute.Date;
@@ -721,6 +720,12 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<1>;
+    CleaningFee: Schema.Attribute.Integer &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -809,7 +814,7 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
       'api::property-amenity.property-amenity'
     >;
     property_reviews: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToMany',
       'api::property-review.property-review'
     >;
     property_type: Schema.Attribute.Relation<

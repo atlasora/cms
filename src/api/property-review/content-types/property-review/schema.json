@@ -44,17 +44,25 @@
       "min": 0,
       "max": 5
     },
-    "properties": {
+    "property": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::property.property",
-      "mappedBy": "property_reviews"
+      "inversedBy": "property_reviews"
     },
     "users_permissions_user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "property_reviews"
+    },
+    "LikeCounter": {
+      "type": "integer",
+      "default": 0
+    },
+    "DislikeCounter": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

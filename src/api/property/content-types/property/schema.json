@@ -200,9 +200,9 @@
     },
     "property_reviews": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::property-review.property-review",
-      "inversedBy": "properties"
+      "mappedBy": "property"
     },
     "currency": {
       "type": "relation",
@@ -244,6 +244,14 @@
         }
       },
       "default": 1
+    },
+    "CleaningFee": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
