@@ -252,6 +252,21 @@
           "localized": true
         }
       }
+    },
+    "AtlasFees": {
+      "type": "decimal",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "default": 0.5
+    },
+    "proeprty_booking": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::proeprty-booking.proeprty-booking",
+      "mappedBy": "property"
     }
   }
 }

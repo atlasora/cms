@@ -525,6 +525,47 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProeprtyBookingProeprtyBooking
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'proeprty_bookings';
+  info: {
+    displayName: 'ProeprtyBooking';
+    pluralName: 'proeprty-bookings';
+    singularName: 'proeprty-booking';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    AtlasFee: Schema.Attribute.Integer;
+    CleaningFee: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    EndDate: Schema.Attribute.Date;
+    Guests: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::proeprty-booking.proeprty-booking'
+    > &
+      Schema.Attribute.Private;
+    NumberOfNights: Schema.Attribute.Integer;
+    PaidBy: Schema.Attribute.Enumeration<
+      ['Credit Card', 'Paypal', 'ETH', 'Bitcoin']
+    >;
+    PriceperNight: Schema.Attribute.Integer;
+    property: Schema.Attribute.Relation<'oneToOne', 'api::property.property'>;
+    publishedAt: Schema.Attribute.DateTime;
+    Rooms: Schema.Attribute.Integer;
+    StartDate: Schema.Attribute.Date;
+    TotalPaid: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPropertyAmenityPropertyAmenity
   extends Struct.CollectionTypeSchema {
   collectionName: 'property_amenities';
@@ -712,6 +753,13 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    AtlasFees: Schema.Attribute.Decimal &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<0.5>;
     Bathrooms: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -809,6 +857,10 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    proeprty_booking: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::proeprty-booking.proeprty-booking'
+    >;
     property_amenities: Schema.Attribute.Relation<
       'manyToMany',
       'api::property-amenity.property-amenity'
@@ -1390,6 +1442,7 @@ declare module '@strapi/strapi' {
       'api::currency.currency': ApiCurrencyCurrency;
       'api::global.global': ApiGlobalGlobal;
       'api::location.location': ApiLocationLocation;
+      'api::proeprty-booking.proeprty-booking': ApiProeprtyBookingProeprtyBooking;
       'api::property-amenity.property-amenity': ApiPropertyAmenityPropertyAmenity;
       'api::property-review.property-review': ApiPropertyReviewPropertyReview;
       'api::property-type.property-type': ApiPropertyTypePropertyType;
