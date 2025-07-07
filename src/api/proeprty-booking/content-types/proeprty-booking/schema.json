@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "proeprty_bookings",
+  "info": {
+    "singularName": "proeprty-booking",
+    "pluralName": "proeprty-bookings",
+    "displayName": "ProeprtyBooking"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "property": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::property.property",
+      "inversedBy": "proeprty_booking"
+    },
+    "StartDate": {
+      "type": "date"
+    },
+    "EndDate": {
+      "type": "date"
+    },
+    "Guests": {
+      "type": "integer"
+    },
+    "Rooms": {
+      "type": "integer"
+    },
+    "PriceperNight": {
+      "type": "integer"
+    },
+    "NumberOfNights": {
+      "type": "integer"
+    },
+    "AtlasFee": {
+      "type": "integer"
+    },
+    "CleaningFee": {
+      "type": "integer"
+    },
+    "TotalPaid": {
+      "type": "integer"
+    },
+    "PaidBy": {
+      "type": "enumeration",
+      "enum": [
+        "Credit Card",
+        "Paypal",
+        "ETH",
+        "Bitcoin"
+      ]
+    }
+  }
+}
