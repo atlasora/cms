@@ -1401,6 +1401,7 @@ export interface PluginUsersPermissionsUser
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    DateOfBirth: Schema.Attribute.Date;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -1408,6 +1409,7 @@ export interface PluginUsersPermissionsUser
       }>;
     Facebook: Schema.Attribute.String;
     FirstName: Schema.Attribute.String;
+    Gender: Schema.Attribute.Enumeration<['Male', 'Female', 'Other']>;
     Instagram: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -1415,12 +1417,15 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    Location: Schema.Attribute.String;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    PhoneNumber: Schema.Attribute.String;
     picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    PreferredLanguage: Schema.Attribute.Enumeration<['English', 'French']>;
     property: Schema.Attribute.Relation<'oneToOne', 'api::property.property'>;
     property_reviews: Schema.Attribute.Relation<
       'oneToMany',

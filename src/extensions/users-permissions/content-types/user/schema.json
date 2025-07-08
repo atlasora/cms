@@ -105,6 +105,30 @@
       "relation": "oneToOne",
       "target": "api::property.property",
       "inversedBy": "users_permissions_user"
+    },
+    "DateOfBirth": {
+      "type": "date"
+    },
+    "Gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female",
+        "Other"
+      ]
+    },
+    "PreferredLanguage": {
+      "type": "enumeration",
+      "enum": [
+        "English",
+        "French"
+      ]
+    },
+    "PhoneNumber": {
+      "type": "string"
+    },
+    "Location": {
+      "type": "string"
     }
   }
 }
