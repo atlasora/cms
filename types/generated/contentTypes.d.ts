@@ -538,6 +538,10 @@ export interface ApiProeprtyBookingProeprtyBooking
   };
   attributes: {
     AtlasFee: Schema.Attribute.Integer;
+    BookingStatus: Schema.Attribute.Enumeration<
+      ['Upcoming', 'Active', 'Complete', 'Cancelled']
+    > &
+      Schema.Attribute.DefaultTo<'Upcoming'>;
     CleaningFee: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -563,6 +567,10 @@ export interface ApiProeprtyBookingProeprtyBooking
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -922,6 +930,10 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -1382,6 +1394,7 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    Bio: Schema.Attribute.Text;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1393,6 +1406,9 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    Facebook: Schema.Attribute.String;
+    FirstName: Schema.Attribute.String;
+    Instagram: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1405,6 +1421,7 @@ export interface PluginUsersPermissionsUser
         minLength: 6;
       }>;
     picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    property: Schema.Attribute.Relation<'oneToOne', 'api::property.property'>;
     property_reviews: Schema.Attribute.Relation<
       'oneToMany',
       'api::property-review.property-review'
@@ -1416,6 +1433,8 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    SecondName: Schema.Attribute.String;
+    Twitter: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

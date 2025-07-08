@@ -81,6 +81,30 @@
         "videos",
         "audios"
       ]
+    },
+    "FirstName": {
+      "type": "string"
+    },
+    "SecondName": {
+      "type": "string"
+    },
+    "Twitter": {
+      "type": "string"
+    },
+    "Facebook": {
+      "type": "string"
+    },
+    "Instagram": {
+      "type": "string"
+    },
+    "Bio": {
+      "type": "text"
+    },
+    "property": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::property.property",
+      "inversedBy": "users_permissions_user"
     }
   }
 }

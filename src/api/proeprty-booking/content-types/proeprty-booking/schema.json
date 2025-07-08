@@ -52,6 +52,21 @@
         "ETH",
         "Bitcoin"
       ]
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "BookingStatus": {
+      "type": "enumeration",
+      "default": "Upcoming",
+      "enum": [
+        "Upcoming",
+        "Active",
+        "Complete",
+        "Cancelled"
+      ]
     }
   }
 }
