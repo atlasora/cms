@@ -273,6 +273,14 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "mappedBy": "property"
+    },
+    "PhoneNumber": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
