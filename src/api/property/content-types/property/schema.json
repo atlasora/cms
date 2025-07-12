@@ -228,7 +228,9 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": false,
+      "default": false
     },
     "property_type": {
       "type": "relation",

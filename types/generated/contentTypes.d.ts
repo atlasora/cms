@@ -791,7 +791,8 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
         i18n: {
           localized: true;
         };
-      }>;
+      }> &
+      Schema.Attribute.DefaultTo<false>;
     Description: Schema.Attribute.Blocks &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
