@@ -100,11 +100,11 @@
     "Bio": {
       "type": "text"
     },
-    "property": {
+    "properties": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::property.property",
-      "inversedBy": "users_permissions_user"
+      "mappedBy": "users_permissions_user"
     },
     "DateOfBirth": {
       "type": "date"
@@ -129,6 +129,10 @@
     },
     "Location": {
       "type": "string"
+    },
+    "walletAddress": {
+      "type": "string",
+      "unique": true
     }
   }
 }

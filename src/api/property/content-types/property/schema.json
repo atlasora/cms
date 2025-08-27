@@ -25,6 +25,10 @@
       "required": true,
       "unique": true
     },
+    "BlockchainPropertyId": {
+      "type": "string",
+      "unique": true
+    },
     "Images": {
       "type": "media",
       "pluginOptions": {
@@ -272,9 +276,9 @@
     },
     "users_permissions_user": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "mappedBy": "property"
+      "inversedBy": "properties"
     },
     "PhoneNumber": {
       "type": "string",

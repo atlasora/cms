@@ -776,6 +776,7 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<1>;
+    BlockchainPropertyId: Schema.Attribute.String & Schema.Attribute.Unique;
     CleaningFee: Schema.Attribute.Integer &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -938,7 +939,7 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     users_permissions_user: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
   };
@@ -1433,7 +1434,10 @@ export interface PluginUsersPermissionsUser
     PhoneNumber: Schema.Attribute.String;
     picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     PreferredLanguage: Schema.Attribute.Enumeration<['English', 'French']>;
-    property: Schema.Attribute.Relation<'oneToOne', 'api::property.property'>;
+    properties: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::property.property'
+    >;
     property_reviews: Schema.Attribute.Relation<
       'oneToMany',
       'api::property-review.property-review'
@@ -1456,6 +1460,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    walletAddress: Schema.Attribute.String & Schema.Attribute.Unique;
   };
 }
 
