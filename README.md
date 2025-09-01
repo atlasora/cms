@@ -71,6 +71,7 @@ npx strapi transfer
 remote url
 
 https://majestic-cuddle-3c51b2f88e.strapiapp.com/admin/
+https://cms.atlasora.com/admin
 
 transfer token (push local to production)
 
