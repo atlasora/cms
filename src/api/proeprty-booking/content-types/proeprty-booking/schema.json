@@ -30,19 +30,19 @@
       "type": "integer"
     },
     "PriceperNight": {
-      "type": "integer"
+      "type": "decimal"
     },
     "NumberOfNights": {
       "type": "integer"
     },
     "AtlasFee": {
-      "type": "integer"
+      "type": "decimal"
     },
     "CleaningFee": {
-      "type": "integer"
+      "type": "decimal"
     },
     "TotalPaid": {
-      "type": "integer"
+      "type": "decimal"
     },
     "PaidBy": {
       "type": "enumeration",

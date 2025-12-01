@@ -537,13 +537,13 @@ export interface ApiProeprtyBookingProeprtyBooking
     draftAndPublish: true;
   };
   attributes: {
-    AtlasFee: Schema.Attribute.Integer;
+    AtlasFee: Schema.Attribute.Decimal;
     blockchainBookingId: Schema.Attribute.BigInteger;
     BookingStatus: Schema.Attribute.Enumeration<
       ['Upcoming', 'Active', 'Complete', 'Cancelled']
     > &
       Schema.Attribute.DefaultTo<'Upcoming'>;
-    CleaningFee: Schema.Attribute.Integer;
+    CleaningFee: Schema.Attribute.Decimal;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -561,12 +561,12 @@ export interface ApiProeprtyBookingProeprtyBooking
       ['Credit Card', 'Paypal', 'ETH', 'Bitcoin']
     >;
     paymentReference: Schema.Attribute.String;
-    PriceperNight: Schema.Attribute.Integer;
+    PriceperNight: Schema.Attribute.Decimal;
     property: Schema.Attribute.Relation<'oneToOne', 'api::property.property'>;
     publishedAt: Schema.Attribute.DateTime;
     Rooms: Schema.Attribute.Integer;
     StartDate: Schema.Attribute.Date;
-    TotalPaid: Schema.Attribute.Integer;
+    TotalPaid: Schema.Attribute.Decimal;
     transactionHash: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
