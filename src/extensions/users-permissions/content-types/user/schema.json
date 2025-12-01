@@ -140,6 +140,21 @@
     },
     "walletCreatedAt": {
       "type": "datetime"
+    },
+    "cdpWalletId": {
+      "type": "string"
+    },
+    "cdpWalletAddress": {
+      "type": "string"
+    },
+    "payoutPreference": {
+      "type": "enumeration",
+      "enum": [
+        "cdp_wallet",
+        "external_wallet",
+        "custodial"
+      ],
+      "default": "custodial"
     }
   }
 }

@@ -79,6 +79,29 @@
     },
     "paymentReference": {
       "type": "string"
+    },
+    "payoutStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed",
+        "skipped"
+      ],
+      "default": "pending"
+    },
+    "payoutTxHash": {
+      "type": "string"
+    },
+    "payoutAmount": {
+      "type": "decimal"
+    },
+    "payoutDate": {
+      "type": "datetime"
+    },
+    "payoutDestination": {
+      "type": "string"
     }
   }
 }

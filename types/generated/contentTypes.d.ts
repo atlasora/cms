@@ -561,6 +561,14 @@ export interface ApiProeprtyBookingProeprtyBooking
       ['Credit Card', 'Paypal', 'ETH', 'Bitcoin']
     >;
     paymentReference: Schema.Attribute.String;
+    payoutAmount: Schema.Attribute.Decimal;
+    payoutDate: Schema.Attribute.DateTime;
+    payoutDestination: Schema.Attribute.String;
+    payoutStatus: Schema.Attribute.Enumeration<
+      ['pending', 'processing', 'completed', 'failed', 'skipped']
+    > &
+      Schema.Attribute.DefaultTo<'pending'>;
+    payoutTxHash: Schema.Attribute.String;
     PriceperNight: Schema.Attribute.Decimal;
     property: Schema.Attribute.Relation<'oneToOne', 'api::property.property'>;
     publishedAt: Schema.Attribute.DateTime;
@@ -1408,6 +1416,8 @@ export interface PluginUsersPermissionsUser
   attributes: {
     Bio: Schema.Attribute.Text;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    cdpWalletAddress: Schema.Attribute.String;
+    cdpWalletId: Schema.Attribute.String;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
@@ -1436,6 +1446,10 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    payoutPreference: Schema.Attribute.Enumeration<
+      ['cdp_wallet', 'external_wallet', 'custodial']
+    > &
+      Schema.Attribute.DefaultTo<'custodial'>;
     PhoneNumber: Schema.Attribute.String;
     picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     PreferredLanguage: Schema.Attribute.Enumeration<['English', 'French']>;
