@@ -133,6 +133,13 @@
     "walletAddress": {
       "type": "string",
       "unique": true
+    },
+    "encryptedPrivateKey": {
+      "type": "json",
+      "private": true
+    },
+    "walletCreatedAt": {
+      "type": "datetime"
     }
   }
 }

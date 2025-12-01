@@ -67,6 +67,18 @@
         "Complete",
         "Cancelled"
       ]
+    },
+    "blockchainBookingId": {
+      "type": "biginteger"
+    },
+    "transactionHash": {
+      "type": "string"
+    },
+    "ipfsUri": {
+      "type": "string"
+    },
+    "paymentReference": {
+      "type": "string"
     }
   }
 }

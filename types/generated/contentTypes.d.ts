@@ -538,6 +538,7 @@ export interface ApiProeprtyBookingProeprtyBooking
   };
   attributes: {
     AtlasFee: Schema.Attribute.Integer;
+    blockchainBookingId: Schema.Attribute.BigInteger;
     BookingStatus: Schema.Attribute.Enumeration<
       ['Upcoming', 'Active', 'Complete', 'Cancelled']
     > &
@@ -548,6 +549,7 @@ export interface ApiProeprtyBookingProeprtyBooking
       Schema.Attribute.Private;
     EndDate: Schema.Attribute.Date;
     Guests: Schema.Attribute.Integer;
+    ipfsUri: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -558,12 +560,14 @@ export interface ApiProeprtyBookingProeprtyBooking
     PaidBy: Schema.Attribute.Enumeration<
       ['Credit Card', 'Paypal', 'ETH', 'Bitcoin']
     >;
+    paymentReference: Schema.Attribute.String;
     PriceperNight: Schema.Attribute.Integer;
     property: Schema.Attribute.Relation<'oneToOne', 'api::property.property'>;
     publishedAt: Schema.Attribute.DateTime;
     Rooms: Schema.Attribute.Integer;
     StartDate: Schema.Attribute.Date;
     TotalPaid: Schema.Attribute.Integer;
+    transactionHash: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1415,6 +1419,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    encryptedPrivateKey: Schema.Attribute.JSON & Schema.Attribute.Private;
     Facebook: Schema.Attribute.String;
     FirstName: Schema.Attribute.String;
     Gender: Schema.Attribute.Enumeration<['Male', 'Female', 'Other']>;
@@ -1461,6 +1466,7 @@ export interface PluginUsersPermissionsUser
         minLength: 3;
       }>;
     walletAddress: Schema.Attribute.String & Schema.Attribute.Unique;
+    walletCreatedAt: Schema.Attribute.DateTime;
   };
 }
 
