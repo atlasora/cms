@@ -133,6 +133,28 @@
     "walletAddress": {
       "type": "string",
       "unique": true
+    },
+    "encryptedPrivateKey": {
+      "type": "json",
+      "private": true
+    },
+    "walletCreatedAt": {
+      "type": "datetime"
+    },
+    "cdpWalletId": {
+      "type": "string"
+    },
+    "cdpWalletAddress": {
+      "type": "string"
+    },
+    "payoutPreference": {
+      "type": "enumeration",
+      "enum": [
+        "cdp_wallet",
+        "external_wallet",
+        "custodial"
+      ],
+      "default": "custodial"
     }
   }
 }

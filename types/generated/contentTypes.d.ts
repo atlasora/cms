@@ -537,17 +537,19 @@ export interface ApiProeprtyBookingProeprtyBooking
     draftAndPublish: true;
   };
   attributes: {
-    AtlasFee: Schema.Attribute.Integer;
+    AtlasFee: Schema.Attribute.Decimal;
+    blockchainBookingId: Schema.Attribute.BigInteger;
     BookingStatus: Schema.Attribute.Enumeration<
       ['Upcoming', 'Active', 'Complete', 'Cancelled']
     > &
       Schema.Attribute.DefaultTo<'Upcoming'>;
-    CleaningFee: Schema.Attribute.Integer;
+    CleaningFee: Schema.Attribute.Decimal;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     EndDate: Schema.Attribute.Date;
     Guests: Schema.Attribute.Integer;
+    ipfsUri: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -558,12 +560,22 @@ export interface ApiProeprtyBookingProeprtyBooking
     PaidBy: Schema.Attribute.Enumeration<
       ['Credit Card', 'Paypal', 'ETH', 'Bitcoin']
     >;
-    PriceperNight: Schema.Attribute.Integer;
+    paymentReference: Schema.Attribute.String;
+    payoutAmount: Schema.Attribute.Decimal;
+    payoutDate: Schema.Attribute.DateTime;
+    payoutDestination: Schema.Attribute.String;
+    payoutStatus: Schema.Attribute.Enumeration<
+      ['pending', 'processing', 'completed', 'failed', 'skipped']
+    > &
+      Schema.Attribute.DefaultTo<'pending'>;
+    payoutTxHash: Schema.Attribute.String;
+    PriceperNight: Schema.Attribute.Decimal;
     property: Schema.Attribute.Relation<'oneToOne', 'api::property.property'>;
     publishedAt: Schema.Attribute.DateTime;
     Rooms: Schema.Attribute.Integer;
     StartDate: Schema.Attribute.Date;
-    TotalPaid: Schema.Attribute.Integer;
+    TotalPaid: Schema.Attribute.Decimal;
+    transactionHash: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1404,6 +1416,8 @@ export interface PluginUsersPermissionsUser
   attributes: {
     Bio: Schema.Attribute.Text;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    cdpWalletAddress: Schema.Attribute.String;
+    cdpWalletId: Schema.Attribute.String;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
@@ -1415,6 +1429,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    encryptedPrivateKey: Schema.Attribute.JSON & Schema.Attribute.Private;
     Facebook: Schema.Attribute.String;
     FirstName: Schema.Attribute.String;
     Gender: Schema.Attribute.Enumeration<['Male', 'Female', 'Other']>;
@@ -1431,6 +1446,10 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    payoutPreference: Schema.Attribute.Enumeration<
+      ['cdp_wallet', 'external_wallet', 'custodial']
+    > &
+      Schema.Attribute.DefaultTo<'custodial'>;
     PhoneNumber: Schema.Attribute.String;
     picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     PreferredLanguage: Schema.Attribute.Enumeration<['English', 'French']>;
@@ -1461,6 +1480,7 @@ export interface PluginUsersPermissionsUser
         minLength: 3;
       }>;
     walletAddress: Schema.Attribute.String & Schema.Attribute.Unique;
+    walletCreatedAt: Schema.Attribute.DateTime;
   };
 }
 
