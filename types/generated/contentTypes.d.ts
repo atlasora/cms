@@ -620,6 +620,47 @@ export interface ApiPropertyAmenityPropertyAmenity
   };
 }
 
+export interface ApiPropertyChatPropertyChat
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'property_chats';
+  info: {
+    description: 'Chat messages between guests and hosts';
+    displayName: 'Property Chat';
+    pluralName: 'property-chats';
+    singularName: 'property-chat';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    admin_user: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
+    adminMessage: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::property-chat.property-chat'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    proeprty_booking: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::proeprty-booking.proeprty-booking'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    uid: Schema.Attribute.UID;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiPropertyReviewPropertyReview
   extends Struct.CollectionTypeSchema {
   collectionName: 'property_reviews';
@@ -1500,6 +1541,7 @@ declare module '@strapi/strapi' {
       'api::location.location': ApiLocationLocation;
       'api::proeprty-booking.proeprty-booking': ApiProeprtyBookingProeprtyBooking;
       'api::property-amenity.property-amenity': ApiPropertyAmenityPropertyAmenity;
+      'api::property-chat.property-chat': ApiPropertyChatPropertyChat;
       'api::property-review.property-review': ApiPropertyReviewPropertyReview;
       'api::property-type.property-type': ApiPropertyTypePropertyType;
       'api::property.property': ApiPropertyProperty;
